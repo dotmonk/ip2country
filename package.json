@@ -1,0 +1,18 @@
+{
+    "name": "ip2country",
+    "version": "1.0.0",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "scripts": {
+        "update": "tsx update.ts",
+        "test": "tsx test.ts",
+        "build": "tsc index.ts --declaration"
+    },
+    "author": "Magnus Weinberg <magnus.weinberg@gmail.com>",
+    "license": "Public Domain",
+    "devDependencies": {
+        "@types/node": "^20.19.16",
+        "tsx": "^4.20.5",
+        "typescript": "^5.0.4"
+    }
+}

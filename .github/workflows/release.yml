@@ -1,0 +1,38 @@
+name: Daily Auto Update
+
+on:
+    schedule:
+        - cron: '0 0 * * *' # Runs at 00:00 UTC every day
+    workflow_dispatch:
+        # For testing and manual runs
+
+jobs:
+    auto-update:
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+        env:
+            THIS_IS_A_GITHUB_AUTOUPDATE: "1"
+        steps:
+            - name: "Checkout repository"
+              uses: actions/checkout@v4
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                fetch-depth: 0  # Fetch all history for git operations
+
+            - name: "Set up Node.js"
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+                cache: 'npm'
+
+            - name: Configure Git
+              run: |
+                git config --global user.name "GitHub Actions"
+                git config --global user.email "actions@github.com"
+
+            - name: "Install dependencies"
+              run: npm ci
+
+            - name: "Run update"
+              run: npm run update
