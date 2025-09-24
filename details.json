@@ -524,8 +524,8 @@
     "description": "Russia",
     "countryCode": "RU",
     "flag": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5IDYiIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDl2M0gweiIvPjxwYXRoIGZpbGw9IiNkNTJiMWUiIGQ9Ik0wIDNoOXYzSDB6Ii8+PHBhdGggZmlsbD0iIzAwMzlhNiIgZD0iTTAgMmg5djJIMHoiLz48L3N2Zz4=",
-    "lat": 61.524,
-    "lon": 105.3188
+    "lat": 60.0000,
+    "lon": 80.0000
   },
   "PT": {
     "type": "country",
