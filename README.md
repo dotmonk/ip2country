@@ -20,10 +20,11 @@ npm install github:dotmonk/ip2country#v1.0.3
 ## Usage
 
 ```ts
+import path from "path";
 import { ip2details, loadDatabase, codeToDetails } from "ip2country";
 
-// NOTE: Need to load the file first
-loadDatabase();
+// NOTE: Need to load the file first, you can also put this data wherever it is convienient
+loadDatabase(path.join(process.cwd(), 'node_modules/ip2country/data.json.gz'));
 
 console.log(ip2details('2001:4200:abcd:1234:5678:9abc:def0:1234'));
 /* prints out
@@ -69,15 +70,6 @@ console.log(codeToDetails()["SE"].flag)
 
 console.log(codeToDetails()["loopback"].flag)
 // prints out undefined
-```
-
-You can update it during runtime by doing this:
-
-```ts
-import { updateDataFile } from "ip2country";
-
-updateDataFile().then(() => loadDatabase());
-
 ```
 
 ## Why
