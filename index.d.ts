@@ -1,4 +1,3 @@
-export declare const DATAFILE: string;
 export interface Ipv4Range {
     start: number;
     end: number;
@@ -22,7 +21,13 @@ export interface IpDetails {
 export interface CodeToDetails {
     [code: string]: IpDetails;
 }
-export declare function updateDataFile(): Promise<void>;
+export declare function ipv6ToBigInt(ip: string): bigint[];
+export declare function ipv4ToNumber(ip: string): number;
 export declare function ip2details(ip: string): IpDetails | null;
 export declare function codeToDetails(): CodeToDetails;
-export declare function loadDatabase(): void;
+export declare function loadDatabase(datafile: string): void;
+export interface RangesData {
+    ipv4: Ipv4Range[];
+    ipv6: Ipv6Range[];
+    codeToDetails: CodeToDetails;
+}

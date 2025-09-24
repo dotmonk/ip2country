@@ -1,5 +1,6 @@
 import assert from "assert";
 import { ip2details, codeToDetails, loadDatabase } from ".";
+import path from "path";
 
 type AddressTest = {
     ip: string;
@@ -9,7 +10,7 @@ type AddressTest = {
     missingFlag?: true;
 };
 
-loadDatabase();
+loadDatabase(path.join(process.cwd(), 'data.json.gz'));
 
 const addresses: AddressTest[] = [
     { ip: '2a05:1500:600:1:1c00:4aff:fe00:', expectedCc: "NL", expectedDescription: "Netherlands", expectedType: "country" },
