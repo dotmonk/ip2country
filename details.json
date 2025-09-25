@@ -1490,8 +1490,8 @@
     "description": "Bonaire, Sint Eustatius and Saba",
     "countryCode": "BQ",
     "flag": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgMjcwIDE4MCIgZmlsbD0iIzEwMTgyMCI+PHBhdGggZD0iTTAgMGgyNzB2MTgwSDB6IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI3MCAwdjE4MEgweiIgZmlsbD0iIzAwMzA4NyIvPjxwYXRoIGQ9Ik0wIDc1VjBoMTEyLjV6IiBmaWxsPSJnb2xkIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzUgNzcuNSkiPjxwYXRoIGQ9Ik0wLTQ1IDI1Ljk4IDAgMCA0NS0yNS45OCAwek00NSAwIDAgMjUuOTgtNDUgMCAwLTI1Ljk4eiIvPjxjaXJjbGUgcj0iMzguOTcxIi8+PGNpcmNsZSByPSIzMy43NSIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Im0wIDIyLjUtMTkuNDg2LTMzLjc1aDM4Ljk3MnptMC00NSAxOS40ODYgMzMuNzVoLTM4Ljk3MnoiIGZpbGw9IiNkNTAwMzIiLz48L2c+PC9zdmc+",
-    "lat": 12.18,
-    "lon": -68.97
+    "lat": 12.1500,
+    "lon": -68.2667
   },
   "AW": {
     "type": "country",
