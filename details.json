@@ -1162,8 +1162,8 @@
     "description": "Saint Vincent and the Grenadines",
     "countryCode": "VC",
     "flag": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgMjQwIDE2MCI+PHBhdGggZmlsbD0iI2ZjZDAyMiIgZD0iTTAgMGgyNDB2MTYwSDB6Ii8+PHBhdGggZmlsbD0iIzAwMjY3NCIgZD0iTTAgMGg2MHYxNjBIMHoiLz48cGF0aCBmaWxsPSIjMDA3YzJlIiBkPSJNMTgwIDBoNjB2MTYwaC02MHptLTc4IDUxLjk2MiAxNSAyNS45OC0xNSAyNS45ODEtMTUtMjUuOTgxem0zNiAwIDE1IDI1Ljk4LTE1IDI1Ljk4MS0xNS0yNS45ODF6bS0xOCAzMS4xNzYgMTUgMjUuOTgxLTE1IDI1Ljk4MS0xNS0yNS45ODF6Ii8+PC9zdmc+",
-    "lat": 13.2538,
-    "lon": -61.2873
+    "lat": 13.2500,
+    "lon": -61.2000
   },
   "DM": {
     "type": "country",
