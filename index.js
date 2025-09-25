@@ -13,6 +13,9 @@ exports.ipv6ToBigInt = ipv6ToBigInt;
 exports.ipv4ToNumber = ipv4ToNumber;
 exports.ip2details = ip2details;
 exports.codeToDetails = codeToDetails;
+exports.ipv4fromNumber = ipv4fromNumber;
+exports.ipv6fromNumber = ipv6fromNumber;
+exports.codeToRanges = codeToRanges;
 exports.loadDatabase = loadDatabase;
 var fs_1 = require("fs");
 var zlib = require("zlib");
@@ -59,6 +62,55 @@ function ip2details(ip) {
 }
 function codeToDetails() {
     return rangesData.codeToDetails;
+}
+function ipv4fromNumber(num) {
+    return [
+        (num >> 24) & 0xFF,
+        (num >> 16) & 0xFF,
+        (num >> 8) & 0xFF,
+        num & 0xFF
+    ].join('.');
+}
+// Converts two BigInt values (upper and lower) to an IPv6 string
+function ipv6fromNumber(upper, lower) {
+    var blocks = [];
+    // upper: first 4 blocks
+    var upperHex = upper.toString(16).padStart(16, '0');
+    var lowerHex = lower.toString(16).padStart(16, '0');
+    for (var i = 0; i < 4; i++) {
+        blocks.push(upperHex.slice(i * 4, (i + 1) * 4));
+    }
+    for (var i = 0; i < 4; i++) {
+        blocks.push(lowerHex.slice(i * 4, (i + 1) * 4));
+    }
+    // Remove leading zeros for each block
+    return blocks.map(function (b) { return b.replace(/^0+/, '') || '0'; }).join(':');
+}
+function codeToRanges(code) {
+    var codeRanges = [];
+    for (var _i = 0, _a = rangesData.ipv4; _i < _a.length; _i++) {
+        var range = _a[_i];
+        if (range.code === code) {
+            var start = ipv4fromNumber(range.start);
+            var end = ipv4fromNumber(range.end);
+            codeRanges.push({
+                start: start,
+                end: end
+            });
+        }
+    }
+    for (var _b = 0, _c = rangesData.ipv6; _b < _c.length; _b++) {
+        var range = _c[_b];
+        if (range.code === code) {
+            var start = ipv6fromNumber(range.startUpper, range.startLower);
+            var end = ipv6fromNumber(range.endUpper, range.endLower);
+            codeRanges.push({
+                start: start,
+                end: end
+            });
+        }
+    }
+    return codeRanges;
 }
 function loadDatabase(datafile) {
     var data = zlib.gunzipSync((0, fs_1.readFileSync)(datafile)).toString();

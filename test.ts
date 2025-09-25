@@ -1,6 +1,7 @@
 import assert from "assert";
 import { ip2details, codeToDetails, loadDatabase } from ".";
 import path from "path";
+import { codeToRanges } from ".";
 
 type AddressTest = {
     ip: string;
@@ -84,6 +85,16 @@ try {
     console.log("Test passed for countryCodes function");
 } catch (error) {
     console.error(`Test failed for countryCodes function. ${error}`);
+    failed = true;
+}
+
+try {
+    const vaticanRanges = codeToRanges("VA");
+    if(vaticanRanges.length === 0) {
+        console.error(`Test failed for codeToRanges function for VA (Vatican City). No ranges found`);
+    }
+} catch (error) {
+    console.error(`Test failed for codeToRanges function. ${error}`);
     failed = true;
 }
 

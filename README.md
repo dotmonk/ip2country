@@ -6,6 +6,7 @@
   - positions (source: Grok)
   - descriptions (source: Grok)
   - types (country, region, loopback, private, link-local or cgnat)
+- Resolve country code to IPv4 and IPv6 ranges
 - Public Domain License
 - Self contained
 - Self updated on github via github actions to keep in sync with sources
@@ -70,6 +71,30 @@ console.log(codeToDetails()["SE"].flag)
 
 console.log(codeToDetails()["loopback"].flag)
 // prints out undefined
+
+console.log(codeToRanges("VA"));
+/*
+prints out (This may change slightly over time)
+[
+  { start: '185.17.220.0', end: '185.17.223.255' },
+  { start: '185.152.68.0', end: '185.152.71.255' },
+  { start: '212.77.0.0', end: '212.77.31.255' },
+  { start: '193.43.102.0', end: '193.43.103.255' },
+  {
+    start: '2a01:b8:0:0:0:0:0:0',
+    end: '2a01:b8:ffff:ffff:ffff:ffff:ffff:ffff'
+  },
+  {
+    start: '2a04:640:0:0:0:0:0:0',
+    end: '2a04:647:ffff:ffff:ffff:ffff:ffff:ffff'
+  },
+  {
+    start: '2a07:8100:0:0:0:0:0:0',
+    end: '2a07:8107:ffff:ffff:ffff:ffff:ffff:ffff'
+  }
+]
+*/
+)
 ```
 
 ## Why
