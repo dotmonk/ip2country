@@ -751,7 +751,7 @@
   },
   "CI": {
     "type": "country",
-    "description": "Côte d'Ivoire",
+    "description": "Ivory Coast",
     "countryCode": "CI",
     "flag": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIj48cGF0aCBmaWxsPSIjMDA5ZTYwIiBkPSJNMCAwaDkwMHY2MDBIMHoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDYwMHY2MDBIMHoiLz48cGF0aCBmaWxsPSIjZjc3ZjAwIiBkPSJNMCAwaDMwMHY2MDBIMHoiLz48L3N2Zz4=",
     "lat": 7.5398,
