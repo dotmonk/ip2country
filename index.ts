@@ -83,6 +83,57 @@ export function codeToDetails() {
     return rangesData.codeToDetails;
 }
 
+export function ipv4fromNumber(num: number): string {
+    return [
+        (num >> 24) & 0xFF,
+        (num >> 16) & 0xFF,
+        (num >> 8) & 0xFF,
+        num & 0xFF
+    ].join('.');
+}
+
+// Converts two BigInt values (upper and lower) to an IPv6 string
+export function ipv6fromNumber(upper: bigint, lower: bigint): string {
+    const blocks: string[] = [];
+    // upper: first 4 blocks
+    let upperHex = upper.toString(16).padStart(16, '0');
+    let lowerHex = lower.toString(16).padStart(16, '0');
+    for (let i = 0; i < 4; i++) {
+        blocks.push(upperHex.slice(i * 4, (i + 1) * 4));
+    }
+    for (let i = 0; i < 4; i++) {
+        blocks.push(lowerHex.slice(i * 4, (i + 1) * 4));
+    }
+    // Remove leading zeros for each block
+    return blocks.map(b => b.replace(/^0+/, '') || '0').join(':');
+}
+
+export function codeToRanges(code: string) {
+    const codeRanges: CodeRange[] = [];
+    for (const range of rangesData.ipv4) {
+        if (range.code === code) {
+            const start = ipv4fromNumber(range.start);
+            const end = ipv4fromNumber(range.end);
+            codeRanges.push({
+                start,
+                end
+            });
+        }
+    }
+    for (const range of rangesData.ipv6) {
+        if (range.code === code) {
+            const start = ipv6fromNumber(range.startUpper, range.startLower);
+            const end = ipv6fromNumber(range.endUpper, range.endLower);
+            codeRanges.push({
+                start,
+                end
+            });
+        }
+    }
+    return codeRanges;
+}
+
+
 export function loadDatabase(datafile:string) {
     const data = zlib.gunzipSync(readFileSync(datafile)).toString();
     const newRangesData: RangesData = JSON.parse(data, (_, value) =>
@@ -91,6 +142,11 @@ export function loadDatabase(datafile:string) {
     rangesData.ipv4 = newRangesData.ipv4;
     rangesData.ipv6 = newRangesData.ipv6;
     rangesData.codeToDetails = newRangesData.codeToDetails;
+}
+
+export interface CodeRange {
+    start: string,
+    end: string
 }
 
 export interface RangesData {
