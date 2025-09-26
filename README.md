@@ -18,6 +18,11 @@
 npm install github:dotmonk/ip2country#v1.0.7
 ```
 
+## Demo
+https://github.com/dotmonk/ip2country-demo
+
+![Animated DEMO](https://raw.githubusercontent.com/dotmonk/ip2country-demo/main/demo.gif)
+
 ## Usage
 
 ```ts
