@@ -30,7 +30,7 @@ const addresses: AddressTest[] = [
     { ip: "192.168.0.1", expectedDescription: "Private address", missingFlag: true, expectedType: "private" },
     { ip: "127.0.0.1", expectedDescription: "Loopback address", missingFlag: true, expectedType: "loopback" },
     { ip: "138.199.64.1", expectedDescription: "European Union", expectedType: "region" },
-    { ip: "165.101.120.1", expectedDescription: "Asia Pacific", missingFlag: true, expectedType: "region" },
+    { ip: "165.101.120.1", expectedDescription: "Singapore", expectedCc: "SG", expectedType: "country" },
     { ip: "10.0.0.1", expectedDescription: "Private address", missingFlag: true, expectedType: "private" },
     { ip: "172.16.0.1", expectedDescription: "Private address", missingFlag: true, expectedType: "private" },
     { ip: "169.254.0.1", expectedDescription: "Link-Local address", missingFlag: true, expectedType: "link-local" },
