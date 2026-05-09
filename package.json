@@ -1,6 +1,6 @@
 {
     "name": "ip2country",
-    "version": "1.0.211",
+    "version": "1.0.212",
     "main": "index.js",
     "types": "index.d.ts",
     "scripts": {
