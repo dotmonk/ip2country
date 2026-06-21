@@ -13,6 +13,7 @@ jobs:
           contents: write
         env:
             THIS_IS_A_GITHUB_AUTOUPDATE: "1"
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Used by `gh release create` in update.ts
         steps:
             - name: "Checkout repository"
               uses: actions/checkout@v4

@@ -3,6 +3,11 @@
     "version": "1.0.249",
     "main": "index.js",
     "types": "index.d.ts",
+    "files": [
+        "index.js",
+        "index.d.ts",
+        "data.json.gz"
+    ],
     "scripts": {
         "update": "tsx update.ts",
         "test": "tsx test.ts",

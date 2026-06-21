@@ -267,15 +267,28 @@ export async function updateDataFile(datafile:string, detailsfile:string) {
     console.log("Tests passed.");
     console.log("Updating version in package.json and README.md...");
     const packageJson = JSON.parse(readFileSync('./package.json', { encoding: 'utf8' })) as { version: string };
-    const readme = readFileSync('./README.md', { encoding: 'utf8' });
-    const currentVersion = `v${packageJson.version}`; // v1.0.0
+    const currentBare = packageJson.version; // 1.0.0
+    const currentVersion = `v${currentBare}`; // v1.0.0
     const newVersion = execSync("npm version patch --no-git-tag-version", { encoding: "utf8" }).replace("\n", ""); // v1.0.1
-    writeFileSync('./README.md', readme.replaceAll(currentVersion, newVersion), { encoding: 'utf8' });
+    const newBare = newVersion.replace(/^v/, ""); // 1.0.1
+    const readme = readFileSync('./README.md', { encoding: 'utf8' });
+    // Bump both the "/vX.Y.Z/" path segment and the "ip2country-X.Y.Z.tgz" asset name in the install URL
+    const updatedReadme = readme
+        .replaceAll(currentVersion, newVersion)
+        .replaceAll(`ip2country-${currentBare}.tgz`, `ip2country-${newBare}.tgz`);
+    writeFileSync('./README.md', updatedReadme, { encoding: 'utf8' });
     console.log(`Version updated from ${currentVersion} to ${newVersion}`);
+    console.log("Packing release tarball...");
+    // `files` in package.json allow-lists data.json.gz, so it is bundled even though git ignores it
+    const tarball = `ip2country-${newBare}.tgz`;
+    execSync("npm pack", { stdio: "inherit" });
     console.log("Committing and pushing changes...");
+    // data.json.gz and *.tgz are gitignored, so only the package.json/README version bump is committed
     execSync(`git add .`);
     execSync(`git commit -m "Release ${newVersion}"`);
     execSync(`git tag ${newVersion}`);
     execSync(`git push --tags origin main`);
+    console.log("Creating GitHub release with bundled data...");
+    execSync(`gh release create ${newVersion} ${tarball} --title "${newVersion}" --notes "Daily data update"`, { stdio: "inherit" });
     console.log("All done!");
 })();
