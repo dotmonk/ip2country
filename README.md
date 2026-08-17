@@ -15,7 +15,7 @@
 ## Installation
 
 ```sh
-npm install https://github.com/dotmonk/ip2country/releases/download/v1.0.307/ip2country-1.0.307.tgz
+npm install https://github.com/dotmonk/ip2country/releases/download/v1.0.308/ip2country-1.0.308.tgz
 ```
 
 ## Demo
