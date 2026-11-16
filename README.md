@@ -15,7 +15,13 @@
 ## Installation
 
 ```sh
-npm install https://github.com/dotmonk/ip2country/releases/download/v1.0.399/ip2country-1.0.399.tgz
+npm install @dotmonk/ip2country
+```
+
+Or from a GitHub Release tarball:
+
+```sh
+npm install https://github.com/dotmonk/ip2country/releases/download/v1.0.399/dotmonk-ip2country-1.0.399.tgz
 ```
 
 ## Demo
@@ -27,10 +33,10 @@ https://github.com/dotmonk/ip2country-demo
 
 ```ts
 import path from "path";
-import { ip2details, loadDatabase, codeToDetails } from "ip2country";
+import { ip2details, loadDatabase, codeToDetails } from "@dotmonk/ip2country";
 
-// NOTE: Need to load the file first, you can also put this data wherever it is convienient
-loadDatabase(path.join(process.cwd(), 'node_modules/ip2country/data.json.gz'));
+// NOTE: Need to load the file first, you can also put this data wherever it is convenient
+loadDatabase(path.join(process.cwd(), 'node_modules/@dotmonk/ip2country/data.json.gz'));
 
 console.log(ip2details('2001:4200:abcd:1234:5678:9abc:def0:1234'));
 /* prints out

@@ -272,15 +272,16 @@ export async function updateDataFile(datafile:string, detailsfile:string) {
     const newVersion = execSync("npm version patch --no-git-tag-version", { encoding: "utf8" }).replace("\n", ""); // v1.0.1
     const newBare = newVersion.replace(/^v/, ""); // 1.0.1
     const readme = readFileSync('./README.md', { encoding: 'utf8' });
-    // Bump both the "/vX.Y.Z/" path segment and the "ip2country-X.Y.Z.tgz" asset name in the install URL
+    // Bump both the "/vX.Y.Z/" path segment and the scoped "dotmonk-ip2country-X.Y.Z.tgz" asset name
     const updatedReadme = readme
         .replaceAll(currentVersion, newVersion)
-        .replaceAll(`ip2country-${currentBare}.tgz`, `ip2country-${newBare}.tgz`);
+        .replaceAll(`dotmonk-ip2country-${currentBare}.tgz`, `dotmonk-ip2country-${newBare}.tgz`);
     writeFileSync('./README.md', updatedReadme, { encoding: 'utf8' });
     console.log(`Version updated from ${currentVersion} to ${newVersion}`);
     console.log("Packing release tarball...");
     // `files` in package.json allow-lists data.json.gz, so it is bundled even though git ignores it
-    const tarball = `ip2country-${newBare}.tgz`;
+    // Scoped packages pack as "<scope>-<name>-<version>.tgz"
+    const tarball = `dotmonk-ip2country-${newBare}.tgz`;
     execSync("npm pack", { stdio: "inherit" });
     console.log("Committing and pushing changes...");
     // data.json.gz and *.tgz are gitignored, so only the package.json/README version bump is committed

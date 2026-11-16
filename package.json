@@ -1,6 +1,7 @@
 {
-    "name": "ip2country",
+    "name": "@dotmonk/ip2country",
     "version": "1.0.399",
+    "description": "Self-contained IP to country lookup with zero runtime dependencies",
     "main": "index.js",
     "types": "index.d.ts",
     "files": [
@@ -13,8 +14,15 @@
         "test": "tsx test.ts",
         "build": "tsc index.ts --declaration"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dotmonk/ip2country.git"
+    },
     "author": "Magnus Weinberg <magnus.weinberg@gmail.com>",
     "license": "Public Domain",
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "@types/node": "^20.19.16",
         "tsx": "^4.20.5",
