@@ -37,3 +37,19 @@ jobs:
 
             - name: "Run update"
               run: npm run update
+
+            - name: "Upload data for Pages"
+              if: hashFiles('data.json.gz') != ''
+              uses: actions/upload-artifact@v4
+              with:
+                name: data-json-gz
+                path: data.json.gz
+                retention-days: 1
+
+    pages:
+        needs: auto-update
+        permissions:
+          contents: read
+          pages: write
+          id-token: write
+        uses: ./.github/workflows/pages.yml

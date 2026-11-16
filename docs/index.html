@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ip2country</title>
+    <link rel="icon" href="logo.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "janus-elements": "./lib/janus/index.js",
+          "janus-elements/ui/button": "./lib/janus/ui/Button.js",
+          "janus-elements/ui/input": "./lib/janus/ui/Input.js",
+          "janus-elements/ui/card": "./lib/janus/ui/Card.js",
+          "janus-elements/ui/field": "./lib/janus/ui/Field.js",
+          "janus-elements/ui/base-theme": "./lib/janus/ui/BaseTheme.js",
+          "janus-elements/ui/icons/search": "./lib/janus/ui/icon/search.js",
+          "janus-elements/ui/icons/map-pin": "./lib/janus/ui/icon/map-pin.js",
+          "janus-elements/ui/icons/sun": "./lib/janus/ui/icon/sun.js",
+          "janus-elements/ui/icons/moon": "./lib/janus/ui/icon/moon.js",
+          "janus-elements/ui/icons/day-night": "./lib/janus/ui/icon/day-night.js"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="./App.js"></script>
+  </head>
+  <body>
+    <janus-ip2c-app>Loading…</janus-ip2c-app>
+  </body>
+</html>

@@ -12,7 +12,10 @@
     "scripts": {
         "update": "tsx update.ts",
         "test": "tsx test.ts",
-        "build": "tsc index.ts --declaration"
+        "build": "tsc index.ts --declaration",
+        "pages:sync-janus": "sh docs/sync-janus.sh",
+        "pages:build": "tsx scripts/chunk-for-pages.ts",
+        "pages": "npm run pages:sync-janus && npm run pages:build"
     },
     "repository": {
         "type": "git",

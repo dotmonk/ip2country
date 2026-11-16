@@ -1,0 +1,49 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-label="ip2country"
+>
+  <style>
+    .ip2c-globe {
+      fill: none;
+      stroke: var(--janus-text, #e6efe8);
+      stroke-width: 2.25;
+    }
+    .ip2c-meridian,
+    .ip2c-parallel {
+      fill: none;
+      stroke: var(--janus-text-muted, #93a696);
+      stroke-width: 1.75;
+    }
+    .ip2c-pin {
+      fill: var(--janus-accent, #6dcf7a);
+    }
+    .ip2c-pin-dot {
+      fill: var(--janus-bg, #0c120e);
+    }
+    @media (prefers-color-scheme: light) {
+      .ip2c-globe {
+        stroke: var(--janus-text, #121a14);
+      }
+      .ip2c-meridian,
+      .ip2c-parallel {
+        stroke: var(--janus-text-muted, #4a5c4e);
+      }
+      .ip2c-pin {
+        fill: var(--janus-accent, #1a6b2e);
+      }
+      .ip2c-pin-dot {
+        fill: var(--janus-bg, #f0f4f0);
+      }
+    }
+  </style>
+  <circle class="ip2c-globe" cx="32" cy="32" r="26" />
+  <ellipse class="ip2c-meridian" cx="32" cy="32" rx="11" ry="26" />
+  <ellipse class="ip2c-parallel" cx="32" cy="32" rx="26" ry="10" />
+  <path
+    class="ip2c-pin"
+    d="M44 18c-5.2 0-9.4 4.1-9.4 9.2 0 6.9 9.4 16.8 9.4 16.8s9.4-9.9 9.4-16.8c0-5.1-4.2-9.2-9.4-9.2z"
+  />
+  <circle class="ip2c-pin-dot" cx="44" cy="27" r="3.1" />
+</svg>

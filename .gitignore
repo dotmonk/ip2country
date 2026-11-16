@@ -1,3 +1,6 @@
 node_modules
 data.json.gz
 *.tgz
+docs/data/
+docs/lib/
+.cache/

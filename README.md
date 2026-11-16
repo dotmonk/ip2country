@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/logo.svg" width="96" alt="ip2country logo"></p>
+
 # IP to Country library
 
 - Resolves IPv4 and IPv6 addresses to:
@@ -25,9 +27,39 @@ npm install https://github.com/dotmonk/ip2country/releases/download/v1.0.399/dot
 ```
 
 ## Demo
-https://github.com/dotmonk/ip2country-demo
+
+- Browser lookup (GitHub Pages): https://dotmonk.github.io/ip2country/
+- Demo with a backend server: https://github.com/dotmonk/ip2country-demo
 
 ![Animated DEMO](https://raw.githubusercontent.com/dotmonk/ip2country-demo/main/demo.gif)
+
+## GitHub Pages
+
+The site under [`docs/`](docs/) is built with [janus-elements](https://github.com/dotmonk/janus-elements) (green theme) and chunked static JSON. The result map ([`docs/map.js`](docs/map.js)) uses [Leaflet](https://leafletjs.com/) 1.9.4 from unpkg with OpenStreetMap tiles, recoloured with CSS filters to match the light and dark theme. Enable **Settings → Pages → Source: GitHub Actions** so [`.github/workflows/pages.yml`](.github/workflows/pages.yml) can deploy. The daily update workflow rebuilds Pages after refreshing RIR data.
+
+Chunked data (`docs/data/`) and the synced janus copy (`docs/lib/`) are **gitignored** and only produced in CI / local builds, so they do not grow git history.
+
+### Local build
+
+```sh
+# needs data.json.gz (from a release tarball) in the repo root
+npm run pages          # sync janus + chunk data into docs/
+python3 -m http.server --directory docs
+```
+
+### Static data API
+
+Public files on Pages (same paths under `docs/data/` locally):
+
+```
+data/meta.json
+data/details.json
+data/flags/{CC}.json
+data/ipv4/{0-255}.json   → [{s,e,c}, ...]
+data/ipv6/{hhhh}.json    → [{su,eu,sl,el,c}, ...]
+```
+
+IPv4 chunks are keyed by first octet; IPv6 by first hextet. Special ranges (loopback, private, link-local, cgnat) are resolved in the client.
 
 ## Usage
 
@@ -114,5 +146,5 @@ The data sources for this is public domain and I have made the code public domai
 
 ## Caveats
 I spent zero time on code quality or readability for this. I made it because I needed it for a
-fun side-project so it may be a bad idea to use it for production projects and it will require
-some rewriting to support being used in the frontend.
+fun side-project so it may be a bad idea to use it for production projects. For browser use,
+prefer the chunked GitHub Pages data API rather than loading the full `data.json.gz` client-side.

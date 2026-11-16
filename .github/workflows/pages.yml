@@ -1,0 +1,84 @@
+name: Deploy docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - "scripts/chunk-for-pages.ts"
+      - ".github/workflows/pages.yml"
+      - "package.json"
+      - "package-lock.json"
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download data artifact from daily update
+        id: data-artifact
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: data-json-gz
+
+      - name: Obtain data.json.gz from latest release
+        if: hashFiles('data.json.gz') == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG=$(gh release view --json tagName -q .tagName)
+          VERSION="${TAG#v}"
+          if gh release download "$TAG" -p "dotmonk-ip2country-${VERSION}.tgz" -O /tmp/ip2c.tgz; then
+            true
+          else
+            gh release download "$TAG" -p "ip2country-${VERSION}.tgz" -O /tmp/ip2c.tgz
+          fi
+          tar -xzf /tmp/ip2c.tgz -C /tmp
+          cp /tmp/package/data.json.gz ./data.json.gz
+
+      - name: Sync janus-elements into docs
+        run: npm run pages:sync-janus
+
+      - name: Chunk data for Pages
+        run: npm run pages:build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
