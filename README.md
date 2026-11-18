@@ -23,7 +23,7 @@ npm install @dotmonk/ip2country
 Or from a GitHub Release tarball:
 
 ```sh
-npm install https://github.com/dotmonk/ip2country/releases/download/v1.0.400/dotmonk-ip2country-1.0.400.tgz
+npm install https://github.com/dotmonk/ip2country/releases/download/v1.0.401/dotmonk-ip2country-1.0.401.tgz
 ```
 
 ## Demo
