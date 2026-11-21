@@ -1,6 +1,6 @@
 {
     "name": "@dotmonk/ip2country",
-    "version": "1.0.403",
+    "version": "1.0.404",
     "description": "Self-contained IP to country lookup with zero runtime dependencies",
     "main": "index.js",
     "types": "index.d.ts",
